@@ -7,21 +7,28 @@ const Users = require('../users/users-model.js');
 const secrets = require('../config/secrets.js'); //<<<<<<<
 
 
+
 router.get('/', (req, res) => {
-  res.send("It's donate!");
-});
-
-
-router.get('/member/user', (req, res) => {
-    Users.find('usermember')
+    Users.find('route')
       .then(user => {
-  console.log('get user',user)
+  console.log('get route',user)
         res.status(201).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
       });
   });
+
+  router.get('/member/user', (req, res) => {
+      Users.find('usermember')
+        .then(user => {
+    console.log('get user',user)
+          res.status(201).json(user);
+        })
+        .catch(error => {
+          res.status(500).json(error+'');
+        });
+    });
 
   router.get('/member/board', (req, res) => {
     Users.find('boardmember')
@@ -144,7 +151,7 @@ router.get('/member/user', (req, res) => {
       });
   });
 
-  router.delete('member/:id', (req, res) => {
+  router.delete('/member/:id', (req, res) => {
     let id = req.params.id;
    console.log('id',id)
     Users.remove('member',id)
@@ -156,7 +163,7 @@ router.get('/member/user', (req, res) => {
       });
   });
   
-  router.delete('campaign/:id', (req, res) => {
+  router.delete('/campaign/:id', (req, res) => {
     let id = req.params.id;
    console.log('id',id)
     Users.remove('campaign',id)
@@ -168,7 +175,7 @@ router.get('/member/user', (req, res) => {
       });
   });
   
-  router.delete('donor/:id', (req, res) => {
+  router.delete('/donor/:id', (req, res) => {
     let id = req.params.id;
    console.log('id',id)
     Users.remove('donor',id)
@@ -180,7 +187,7 @@ router.get('/member/user', (req, res) => {
       });
   });
   
-  router.delete('donation/:id', (req, res) => {
+  router.delete('/donation/:id', (req, res) => {
     let id = req.params.id;
    console.log('id',id)
     Users.remove('donation',id)
@@ -193,7 +200,51 @@ router.get('/member/user', (req, res) => {
   });
   
 
-  router.put('/donation/:id', (req, res) => {
+  router.post('/donation', (req, res) => {
+    console.log('id',req.params.id)
+     Users.add('donation',req.body)
+       .then(updated => {
+           res.status(201).json(updated); 
+       })
+       .catch(error => {
+         res.status(500).json(error+'');
+       });
+   });
+
+   router.post('/donor', (req, res) => {
+    console.log('id',req.params.id)
+     Users.add('donor',req.body)
+       .then(updated => {
+           res.status(201).json(updated); 
+       })
+       .catch(error => {
+         res.status(500).json(error+'');
+       });
+   });
+
+   router.post('/campaign/donation', (req, res) => {
+    console.log('id',req.params.id)
+     Users.add('campaigndonation',req.body)
+       .then(updated => {
+           res.status(201).json(updated); 
+       })
+       .catch(error => {
+         res.status(500).json(error+'');
+       });
+   });
+
+   router.post('/campaign', (req, res) => {
+    console.log('id',req.params.id)
+     Users.add('campaign',req.body)
+       .then(updated => {
+           res.status(201).json(updated); 
+       })
+       .catch(error => {
+         res.status(500).json(error+'');
+       });
+   });
+
+   router.put('/donation/:id', (req, res) => {
     console.log('id',req.params.id)
      Users.update('donation',req.params.id,req.body)
        .then(updated => {
@@ -253,25 +304,63 @@ router.get('/member/user', (req, res) => {
        });
    });
 
-  router.post('/register/user', (req, res) => {
-  console.log('req',req.body)
-  let user = req.body;
-  const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
-  user.password = hash;
-  user.type = 'user'
-console.log('register user',user)
-  Users.add('member',user)
-    .then(saved => {
-console.log('saved',saved)
-      const token =generateToken(user)
-      saved.token=token
-      res.status(201).json(saved);
-    })
-    .catch(error => {
-      res.status(500).json(error+'');
-    });
-});
+   router.post('/register/user', (req, res) => {
+    console.log('req',req.body)
+    let user = req.body;
+    const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
+    user.password = hash;
+    user.type = 'user'
+  console.log('register user',user)
+    Users.add('member',user)
+      .then(saved => {
+  console.log('saved',saved)
+        const token =generateToken(user)
+        saved.token=token
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        res.status(500).json(error+'');
+      });
+  });
 
+  router.post('/register/board', (req, res) => {
+    console.log('req',req.body)
+    let user = req.body;
+    const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
+    user.password = hash;
+    user.type = 'board'
+  console.log('register board',user)
+    Users.add('member',user)
+      .then(saved => {
+  console.log('saved',saved)
+        const token =generateToken(user)
+        saved.token=token
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        res.status(500).json(error+'');
+      });
+  });
+
+  router.post('/register/campaign', (req, res) => {
+    console.log('req',req.body)
+    let user = req.body;
+    const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
+    user.password = hash;
+    user.type = 'campaign'
+  console.log('register campaign',user)
+    Users.add('member',user)
+      .then(saved => {
+  console.log('saved',saved)
+        const token =generateToken(user)
+        saved.token=token
+        res.status(201).json(saved);
+      })
+      .catch(error => {
+        res.status(500).json(error+'');
+      });
+  });
+      
 router.post('/login', (req, res) => {
   let { username, password } = req.body;
   Users.findBy('member',{ username })
