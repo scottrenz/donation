@@ -11,7 +11,7 @@ const secrets = require('../config/secrets.js'); //<<<<<<<
 router.get('/', (req, res) => {
     Users.find('route')
       .then(user => {
-  console.log('get route',user)
+  // console.log('get route',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -22,7 +22,7 @@ router.get('/', (req, res) => {
   router.get('/member/user', (req, res) => {
       Users.find('usermember')
         .then(user => {
-    console.log('get user',user)
+    // console.log('get user',user)
           res.status(201).json(user);
         })
         .catch(error => {
@@ -33,7 +33,7 @@ router.get('/', (req, res) => {
   router.get('/member/board', (req, res) => {
     Users.find('boardmember')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -44,7 +44,7 @@ router.get('/', (req, res) => {
   router.get('/member/campaign', (req, res) => {
     Users.find('campaignmember')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -55,7 +55,7 @@ router.get('/', (req, res) => {
   router.get('/campaign', (req, res) => {
     Users.find('campaign')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -66,7 +66,7 @@ router.get('/', (req, res) => {
   router.get('/member', (req, res) => {
     Users.find('member')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -77,7 +77,7 @@ router.get('/', (req, res) => {
   router.get('/donor', (req, res) => {
     Users.find('donor')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -88,7 +88,7 @@ router.get('/', (req, res) => {
   router.get('/donation', (req, res) => {
     Users.find('donation')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -99,7 +99,7 @@ router.get('/', (req, res) => {
   router.get('/campaign/donation', (req, res) => {
     Users.find('campaigndonation')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -110,7 +110,7 @@ router.get('/', (req, res) => {
   router.get('/campaign/donate', (req, res) => {
     Users.find('campdonate')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -121,7 +121,7 @@ router.get('/', (req, res) => {
   router.get('/campaign/donor', (req, res) => {
     Users.find('campaigndonor')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -132,7 +132,7 @@ router.get('/', (req, res) => {
   router.get('/camp/donor', (req, res) => {
     Users.find('campdonor')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -143,7 +143,7 @@ router.get('/', (req, res) => {
   router.get('/camp/don', (req, res) => {
     Users.find('campdons')
       .then(user => {
-  console.log('get user',user)
+  // console.log('get user',user)
         res.status(201).json(user);
       })
       .catch(error => {
@@ -153,7 +153,7 @@ router.get('/', (req, res) => {
 
   router.delete('/member/:id', (req, res) => {
     let id = req.params.id;
-   console.log('id',id)
+   // console.log('id',id)
     Users.remove('member',id)
       .then(removed => {
           res.status(201).json(removed); 
@@ -165,7 +165,7 @@ router.get('/', (req, res) => {
   
   router.delete('/campaign/:id', (req, res) => {
     let id = req.params.id;
-   console.log('id',id)
+   // console.log('id',id)
     Users.remove('campaign',id)
       .then(removed => {
           res.status(201).json(removed); 
@@ -177,7 +177,7 @@ router.get('/', (req, res) => {
   
   router.delete('/donor/:id', (req, res) => {
     let id = req.params.id;
-   console.log('id',id)
+   // console.log('id',id)
     Users.remove('donor',id)
       .then(removed => {
           res.status(201).json(removed); 
@@ -189,7 +189,7 @@ router.get('/', (req, res) => {
   
   router.delete('/donation/:id', (req, res) => {
     let id = req.params.id;
-   console.log('id',id)
+   // console.log('id',id)
     Users.remove('donation',id)
       .then(removed => {
           res.status(201).json(removed); 
@@ -201,7 +201,7 @@ router.get('/', (req, res) => {
   
 
   router.post('/donation', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.add('donation',req.body)
        .then(updated => {
            res.status(201).json(updated); 
@@ -212,7 +212,7 @@ router.get('/', (req, res) => {
    });
 
    router.post('/donor', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.add('donor',req.body)
        .then(updated => {
            res.status(201).json(updated); 
@@ -223,7 +223,7 @@ router.get('/', (req, res) => {
    });
 
    router.post('/campaign/donation', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.add('campaigndonation',req.body)
        .then(updated => {
            res.status(201).json(updated); 
@@ -234,7 +234,7 @@ router.get('/', (req, res) => {
    });
 
    router.post('/campaign', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.add('campaign',req.body)
        .then(updated => {
            res.status(201).json(updated); 
@@ -245,7 +245,7 @@ router.get('/', (req, res) => {
    });
 
    router.put('/donation/:id', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.update('donation',req.params.id,req.body)
        .then(updated => {
            res.status(201).json('updated '+updated); 
@@ -256,7 +256,7 @@ router.get('/', (req, res) => {
    });
 
    router.put('/donor/:id', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.update('donor',req.params.id,req.body)
        .then(updated => {
            res.status(201).json('updated '+updated); 
@@ -266,7 +266,7 @@ router.get('/', (req, res) => {
        });
    });
    router.put('/member/:id', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
     let user = req.body;
     if(req.body.password)
     {
@@ -283,7 +283,7 @@ router.get('/', (req, res) => {
    });
 
    router.put('/campaign/:id', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.update('campaign',req.params.id,req.body)
        .then(updated => {
            res.status(201).json('updated '+updated); 
@@ -294,7 +294,7 @@ router.get('/', (req, res) => {
    });
 
    router.put('/campaign/donation/:id', (req, res) => {
-    console.log('id',req.params.id)
+    // console.log('id',req.params.id)
      Users.update('campaigndonation',req.params.id,req.body)
        .then(updated => {
            res.status(201).json('updated '+updated); 
@@ -305,15 +305,15 @@ router.get('/', (req, res) => {
    });
 
    router.post('/register/user', (req, res) => {
-    console.log('req',req.body)
+    // console.log('req',req.body)
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
     user.password = hash;
     user.type = 'user'
-  console.log('register user',user)
+  // console.log('register user',user)
     Users.add('member',user)
       .then(saved => {
-  console.log('saved',saved)
+  // console.log('saved',saved)
         const token =generateToken(user)
         saved.token=token
         res.status(201).json(saved);
@@ -324,15 +324,15 @@ router.get('/', (req, res) => {
   });
 
   router.post('/register/board', (req, res) => {
-    console.log('req',req.body)
+    // console.log('req',req.body)
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
     user.password = hash;
     user.type = 'board'
-  console.log('register board',user)
+  // console.log('register board',user)
     Users.add('member',user)
       .then(saved => {
-  console.log('saved',saved)
+  // console.log('saved',saved)
         const token =generateToken(user)
         saved.token=token
         res.status(201).json(saved);
@@ -343,15 +343,15 @@ router.get('/', (req, res) => {
   });
 
   router.post('/register/campaign', (req, res) => {
-    console.log('req',req.body)
+    // console.log('req',req.body)
     let user = req.body;
     const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
     user.password = hash;
     user.type = 'campaign'
-  console.log('register campaign',user)
+  // console.log('register campaign',user)
     Users.add('member',user)
       .then(saved => {
-  console.log('saved',saved)
+  // console.log('saved',saved)
         const token =generateToken(user)
         saved.token=token
         res.status(201).json(saved);
