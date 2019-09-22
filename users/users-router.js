@@ -216,7 +216,13 @@ router.get('/member/user', (req, res) => {
    });
    router.put('/member/:id', (req, res) => {
     console.log('id',req.params.id)
-     Users.update('member',req.params.id,req.body)
+    let user = req.body;
+    if(req.body.password)
+    {
+        const hash = bcrypt.hashSync(user.password, 10); // 2 ^ n
+        user.password = hash;      
+    }
+     Users.update('member',req.params.id,user)
        .then(updated => {
            res.status(201).json('updated '+updated); 
        })
