@@ -12,7 +12,7 @@ router.get('/', (req, res) => {
     Users.find('route')
       .then(user => {
   // console.log('get route',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -23,7 +23,7 @@ router.get('/', (req, res) => {
       Users.find('usermember')
         .then(user => {
     // console.log('get user',user)
-          res.status(201).json(user);
+          res.status(200).json(user);
         })
         .catch(error => {
           res.status(500).json(error+'');
@@ -34,7 +34,7 @@ router.get('/', (req, res) => {
     Users.find('boardmember')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -45,7 +45,7 @@ router.get('/', (req, res) => {
     Users.find('campaignmember')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -56,7 +56,7 @@ router.get('/', (req, res) => {
     Users.find('campaign')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -67,7 +67,7 @@ router.get('/', (req, res) => {
     Users.find('member')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -78,7 +78,7 @@ router.get('/', (req, res) => {
     Users.find('donor')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -89,7 +89,7 @@ router.get('/', (req, res) => {
     Users.find('donation')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -100,7 +100,7 @@ router.get('/', (req, res) => {
     Users.find('campaigndonation')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -111,7 +111,7 @@ router.get('/', (req, res) => {
     Users.find('campdonate')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -122,7 +122,7 @@ router.get('/', (req, res) => {
     Users.find('campaigndonor')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -133,7 +133,7 @@ router.get('/', (req, res) => {
     Users.find('campdonor')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -144,7 +144,7 @@ router.get('/', (req, res) => {
     Users.find('campdons')
       .then(user => {
   // console.log('get user',user)
-        res.status(201).json(user);
+        res.status(200).json(user);
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -156,7 +156,7 @@ router.get('/', (req, res) => {
    // console.log('id',id)
     Users.remove('member',id)
       .then(removed => {
-          res.status(201).json(removed); 
+          res.status(200).json(removed); 
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -168,7 +168,7 @@ router.get('/', (req, res) => {
    // console.log('id',id)
     Users.remove('campaign',id)
       .then(removed => {
-          res.status(201).json(removed); 
+          res.status(200).json(removed); 
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -180,7 +180,7 @@ router.get('/', (req, res) => {
    // console.log('id',id)
     Users.remove('donor',id)
       .then(removed => {
-          res.status(201).json(removed); 
+          res.status(200).json(removed); 
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -192,7 +192,7 @@ router.get('/', (req, res) => {
    // console.log('id',id)
     Users.remove('donation',id)
       .then(removed => {
-          res.status(201).json(removed); 
+          res.status(200).json(removed); 
       })
       .catch(error => {
         res.status(500).json(error+'');
