@@ -5,6 +5,8 @@ const db = require('../database/dbConfig.js');
 describe('users model', () => {
   beforeEach(async () => {
     await db('campaign').truncate();
+    await db.raw('delete from member where id > 3')
+    await db.raw(`update sqlite_sequence set seq = 3 where name = 'member'`)
   });
 
   it('should set environment to testing', () => {
@@ -18,9 +20,9 @@ describe('users model', () => {
       await Users.add('campaign',{ "name":"Feed the Children","description":"Help starving children","goal":50000 });
       await Users.add('campaign',{ "name":"Stop Insomnia","description":"Help people sleep","goal":60000 });
       // [{"id":1,"name":"Save the Whales","description":"Stop people from killing whales","goal":1000000},{"id":2,"name":"Feed the Children","description":"Help starving children","goal":50000},{"id":3,"name":"Stop Insomnia","description":"Help people sleep","goal":60000}]
-      let users = await db('users');
+      let users = await db('member');
 
-      // assert the record was added
+      // assert the records were added
       expect(users).toHaveLength(3);
     });
 
@@ -28,20 +30,14 @@ describe('users model', () => {
 
   describe('axios get', () => {
     it('should get routes from the site', async () => {
-        const requestOptions = {
-          headers: { accept: 'application/json' },
-        };
       
-        let jokes = await  axios.get('https://donation-management.herokuapp.com/donate', requestOptions)
-        expect(jokes.data.results.length).toBe(30);
+        let routes = await  axios.get('https://donation-management.herokuapp.com/donate')
+        expect(routes.data.length).toBe(30);
       });
-      it('should get jokes from the site', async () => {
-        const requestOptions = {
-          headers: { accept: 'application/json' },
-        };
+      it('should get routes from the site', async () => {
       
-        let jokes = await  axios.get('https://icanhazdadjoke.com/search', requestOptions)
-        expect(jokes.data.results).toHaveLength(30);
+        let routes = await  axios.get('https://donation-management.herokuapp.com/donate')
+        expect(routes.data).toHaveLength(30);
       });
     
   });
@@ -50,25 +46,23 @@ describe('users model', () => {
     it('should find users from the db', async () => {
         let users = await Users.find('member');
         
-        expect(users).toHaveLength(7);
+        expect(users).toHaveLength(3);
       });
   
       it('should find users from the db', async () => {
         const userid = await Users.add('member',{ username: 'Gaffer', password: 'pass', type: 'user' });
 
         let users = await Users.find('member');
-        
-        expect(users).toHaveLength(8);
+        expect(users).toHaveLength(4);
       });
   
       });
   
   describe('findBy()', () => {
     it('should find by users from the db', async () => {
-//        const userid = await Users.add({ username: 'Gaffer', password: 'pass' });
-  // console.log('user id',userid.id)
-  const id = 1
-        let users = await Users.findBy({id: id});
+  const userid = await Users.add('member',{ username: 'Gaffer', password: 'pass', type: 'user' });
+  const id = 4
+        let users = await Users.findBy('member',{id: id});
         
         expect(users).toHaveLength(1);
       });
@@ -77,8 +71,9 @@ describe('users model', () => {
 //        const userid = await Users.add({ username: 'Gaffer', password: 'pass' });
   // console.log('user id',userid.id)
   // const username = userid.username
-        let users = await Users.findBy({username: 'Gaffer'});
-        
+  const userid = await Users.add('member',{ username: 'Gaffer', password: 'pass', type: 'user' });
+  let users = await Users.findBy('member',{username: 'Gaffer'});
+    console.log('second find by',users)    
         expect(users).toHaveLength(1);
       });
   
@@ -86,10 +81,8 @@ describe('users model', () => {
 
   describe('findById(id)', () => {
     it('should find by id users from the db', async () => {
- //     const userid = await Users.add({ username: 'Gaffer', password: 'pass' });
-// console.log('user id',userid.id)
-const id = userid.id
-      let users = await Users.findById(1);
+const id = 4
+      let users = await Users.findById('member',1);
    //   console.log('findbyid users',users)
       expect(users.id).toBe(1);
     });
@@ -100,25 +93,25 @@ const id = userid.id
     it('should delete a user from the db', async () => {
         // delete a record
         // await Users.add({ username: 'Gaffer' });
-        const userid = await Users.add({ username: 'Frodo', password: 'pass', type: 'board' });
+        const userid = await Users.add('member',{ username: 'Frodo', password: 'pass', type: 'board' });
         const id = userid.id
-        await Users.remove(id);
+        await Users.remove('member',id);
   
         let users = await db('member');
   
         // assert the record was added
-        expect(users).toHaveLength(9);
+        expect(users).toHaveLength(3);
       });
   
       it('should delete a user from the db', async () => {
         // delete a record
-        // await Users.add({ username: 'Gaffer' });
-        await Users.remove(8);
+        // await Users.add({ username: 'Frodo' });
+        await Users.remove('member',4);
   
         let users = await db('member');
   
         // assert the record was added
-        expect(users).toHaveLength(7);
+        expect(users).toHaveLength(3);
       });
   
       });
