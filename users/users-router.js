@@ -6,7 +6,16 @@ const cors = require('cors');
 const Users = require('../users/users-model.js');
 const secrets = require('../config/secrets.js'); //<<<<<<<
 
+// async function doit () {
 
+
+// await Users.add('campaign',{ "name":"Save the Whales","description":"Stop people from killing whales","goal":1000000 });
+// await Users.add('campaign',{ "name":"Feed the Children","description":"Help starving children","goal":50000 });
+// await Users.add('campaign',{ "name":"Stop Insomnia","description":"Help people sleep","goal":60000 });
+
+// }
+
+// doit()
 
 router.get('/', (req, res) => {
     Users.find('route')
