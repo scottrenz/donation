@@ -18,15 +18,27 @@ const secrets = require('../config/secrets.js'); //<<<<<<<
 // doit()
 
 router.get('/', (req, res) => {
-    Users.find('route')
-      .then(user => {
-  // console.log('get route',user)
-        res.status(200).json(user);
-      })
-      .catch(error => {
-        res.status(500).json(error+'');
-      });
-  });
+  console.log('req query',req.query)
+  Users.find(req.query.table)
+    .then(user => {
+// console.log('get route',user)
+      res.status(200).json(user);
+    })
+    .catch(error => {
+      res.status(500).json(error+'');
+    });
+});
+
+// router.get('/', (req, res) => {
+//   Users.find('route')
+//     .then(user => {
+// // console.log('get route',user)
+//       res.status(200).json(user);
+//     })
+//     .catch(error => {
+//       res.status(500).json(error+'');
+//     });
+// });
 
   router.get('/member/user', (req, res) => {
       Users.find('usermember')
