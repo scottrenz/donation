@@ -10,7 +10,8 @@ module.exports = {
 };
 
 function find(view,where) {
-  return db.raw('select * from '+view + where ? ' where ' + where : '' + ' order by 1');
+  console.log('select * from '+view + (where ? ' where ' + where : '' )+ ' order by 1');
+  return db.raw('select * from '+view + (where ? ' where ' + where : '') + ' order by 1');
 }
 
 // function find(view) {
