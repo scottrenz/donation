@@ -9,9 +9,13 @@ module.exports = {
   update
 };
 
-function find(view) {
-  return db.raw('select * from '+view+' order by 1');
+function find(view,where) {
+  return db.raw('select * from '+view+' where ' + where + ' order by 1');
 }
+
+// function find(view) {
+//   return db.raw('select * from '+view+' order by 1');
+// }
 
 function findBy(view,filter) {
   return db(view).where(filter);
