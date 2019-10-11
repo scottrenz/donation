@@ -19,7 +19,7 @@ const secrets = require('../config/secrets.js'); //<<<<<<<
 
 router.get('/', (req, res) => {
   console.log('req query',req.query)
-  Users.find(req.query.table)
+  Users.find(req.query.table,req.query.where)
     .then(user => {
 // console.log('get route',user)
       res.status(200).json(user);
