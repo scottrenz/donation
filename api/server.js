@@ -11,7 +11,7 @@ server.use(helmet());
 server.use(cors());
 server.use(express.json());
 
-server.use('/donate', usersRouter);
+server.use('/api', usersRouter);
 
 
 server.get('/', (req, res) => {

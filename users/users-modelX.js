@@ -11,12 +11,9 @@ module.exports = {
 };
 
 function find(view,where) {
-  console.log('where',where)
-  console.log('select * from "'+view + '"' + (where ? ' where ' + where : '' )+ ' order by 1');
-  const rows= db.raw('select * from "'+view+ '"' + (where ? ' where ' + where : '') + ' order by 1');
-  return rows
+  console.log('select * from '+view + (where ? ' where ' + where : '' )+ ' order by 1');
+  return db.raw('select * from '+view + (where ? ' where ' + where : '') + ' order by 1');
 }
-
 function makeWhere(body,conn) {
   if(!conn)
   conn='and'
@@ -36,7 +33,7 @@ let i=0
 
 function findBy(view,filter) {
   console.log('filter',filter)
-  return db.raw('select * from "'+view+'" where '+filter);
+  return db.raw('select * from '+view+' where '+filter);
 }
 
 async function add(table,body) {
@@ -52,13 +49,12 @@ function findById(view,id) {
     .first();
 }
 
-function remove(tab,whe) {
-  return  db.raw('delete from "'+tab+'" where '+whe)
+function remove(table,where) {
+  return  db.raw('delete from '+table+' where '+where)
    }
 
-  function update(table,where,body) {
+function update(table,where,body) {
 let id=where
-console.log('update "'+table+'" set '+makeWhere(body,',')+' where '+where )
-return  db.raw('update "'+table+'" set '+makeWhere(body,',')+' where '+where )
+console.log('update '+table+' set '+makeWhere(body,',')+' where '+where )
+return  db.raw('update '+table+' set '+makeWhere(body,',')+' where '+where )
      }
-          
