@@ -10,7 +10,7 @@ router.get('/', (req, res) => {
   console.log('get req query',req.query)
   Users.find(req.query.table,req.query.where)
     .then(user => {
-      res.status(200).json(user);
+      res.status(200).json(user.rows);
     })
     .catch(error => {
       res.status(500).json(error+'');
@@ -22,7 +22,7 @@ console.log('delete',req.query)
 
 Users.remove(req.query.table,req.query.where)
       .then(removed => {
-          res.status(200).json(removed); 
+          res.status(200).json('number of rows removed: '+removed.rowCount); 
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -38,14 +38,14 @@ Users.remove(req.query.table,req.query.where)
       {
         Users.add(req.query.table,req.body)
          .then(updated => {
-           res.status(201).json(updated); 
+           res.status(201).json(updated.rows); 
          })
          .catch(error => {
           res.status(500).json(error+'');
         });
        }  
       else
-       {res.status(201).json(result)}
+       {res.status(201).json(result.rows)}
       })
       .catch(error => {
         res.status(500).json(error+'');
@@ -56,7 +56,7 @@ Users.remove(req.query.table,req.query.where)
      console.log('put',req.query)
      Users.update(req.query.table,req.query.where,req.body)
        .then(updated => {
-           res.status(201).json('updated '+updated); 
+           res.status(201).json('updated '+updated.rows); 
        })
        .catch(error => {
          res.status(500).json(error+'');

@@ -17,6 +17,14 @@ function find(view,where) {
   return rows
 }
 
+// function find(view) {
+//   return db.raw('select * from '+view+' order by 1');
+// }
+
+// function findBy(view,filter) {
+//   console.log('filter',filter)
+//   return db(view).where(filter);
+// }
 function makeWhere(body,conn) {
   if(!conn)
   conn='and'
@@ -46,6 +54,12 @@ let where = makeWhere(body)
  return findBy(table,where);
 }
 
+// async function add(table,body) {
+//   const [id] = await db(table).insert(body);
+
+//   return findById(table,id);
+// }
+
 function findById(view,id) {
   return db(view)
     .where({ id })
@@ -56,9 +70,17 @@ function remove(tab,whe) {
   return  db.raw('delete from "'+tab+'" where '+whe)
    }
 
+  //  function remove(tab,id) {
+  //   return  db.raw('delete from '+tab+' where id='+id)
+  //    }
+    
   function update(table,where,body) {
 let id=where
 console.log('update "'+table+'" set '+makeWhere(body,',')+' where '+where )
 return  db.raw('update "'+table+'" set '+makeWhere(body,',')+' where '+where )
      }
+  
+    //  function update(table,id,body) {
+    //   return  db(table).where({id: id}).update(body)
+    //    }
           
