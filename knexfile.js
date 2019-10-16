@@ -87,10 +87,10 @@ module.exports = {
     client: 'postgresql',
     connection: {
       port: 5432,
-      host: "speakoutstaging.cswncgslisak.us-east-1.rds.amazonaws.com",
-      database: "speakout",
-      user: "postgres",
-      password: "speakoutaws"
+      host: process.env.DB_HOST,
+      database: process.env.DB_DB,
+      user: process.env.DB_USER,
+      password: process.env.DB_PASS
     },
     pool: {
       min: process.env.DATABASE_POOL_MIN,
